@@ -1,0 +1,9 @@
+WORD FREQUENCY REPORT
+---------------------
+cat: 3
+sat: 1
+mat: 2
+good: 1
+dog: 2
+no: 1
+park: 1
