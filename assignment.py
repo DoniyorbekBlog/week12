@@ -1,7 +1,8 @@
-dic = {}
-over_500 = []
+
 def process_donations(donations):
-    with open("donations.txt", "r") as file:
+    dic = {}
+    over_500 = []
+    with open(donations, "r") as file:
         for line in file:
             line=line.strip().split(',')
             try:
@@ -23,13 +24,14 @@ def process_donations(donations):
 def write_fundraising_report(cause_totals, top_donors):
     with open("fundraising_summary.txt", "w") as file:
         file.write("FUNDS RAISED PER CAUSE\n----------------------\n")
-        for cause, total in dic.items():
+        for cause, total in cause_totals.items():
             file.write(f"{cause}: ${total:.2f}\n")
         file.write("\nGOLD TIER DONORS (> $500)\n----------------------\n")
-        if not len(over_500):
+        if not len(top_donors):
             file.write("There is no Gold Tier Donors")
         else:
-            for name, total in over_500:
+            for name, total in top_donors:
                     file.write(f"{name} (${total})\n")
+
 cause_totals, top_donars = process_donations("donations.txt")
 write_fundraising_report(cause_totals, top_donars)
